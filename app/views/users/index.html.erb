@@ -1,0 +1,16 @@
+<h1 class="text-center mt-5">List of User</h1>
+
+<div class="container text-center mt-3">
+    <% @users.each do |user| %>
+        <div class="mt-5">
+            <%= link_to user.username, user_path(user), method: :get, class: "text-center mt-5" %>
+            Joined <%= time_ago_in_words(user.created_at) %> ago
+            <%= link_to gravatar_for(user, size: 120), user_path(user), method: :get  %>
+            <div class="container">
+                <%= pluralize(user.pieces.count,"piece") %> 
+            </div>
+            <%= link_to "Edit", edit_user_path(user), method: :get  %>
+            <%= link_to "Delete", user_path(user), method: :delete, data: {confirm: "Are you serious?"}  %>
+        </div>
+    <% end %>
+</div>

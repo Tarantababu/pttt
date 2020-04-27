@@ -1,9 +1,4 @@
-<h1>Index</h1>
-
-<% @pieces.each do |piece| %>
-    <h2><%= link_to piece.title, piece_path(piece), method: :get %></h3>
-    <h4>Description: <%= piece.description %></h5>
-    <h6>User: <%= piece.user.username if piece.user %></h5>
-    <%= link_to "Edit", edit_piece_path(piece) %>
-    <%= link_to "Delete", piece_path(piece), method: :delete, data: {confirm: "Are you sure"} %>
-<% end %>
+<h1 class="text-center mt-4">Index</h1>
+<div class="container justify-content-center">
+    <%= render 'piece' %>
+</div>

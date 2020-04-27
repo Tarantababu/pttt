@@ -1,0 +1,8 @@
+<h1>Index</h1>
+
+<% @pieces.each do |piece| %>
+    <h3><%= piece.title%></h3>
+    <h5><%= piece.description %></h5>
+    <%= link_to "Edit", edit_piece_path(piece) %>
+    <%= link_to "Delete", piece_path(piece), method: :delete, data: {confirm: "Are you sure"} %>
+<% end %>

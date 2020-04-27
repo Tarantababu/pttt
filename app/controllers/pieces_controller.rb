@@ -14,6 +14,7 @@ class PiecesController < ApplicationController
     
     def create
         @piece = Piece.new(piece_params)
+        @piece.user = User.first
         if @piece.save
             flash[:success] = "Piece was created successfully"
             redirect_to piece_path(@piece)

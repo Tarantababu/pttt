@@ -2,3 +2,6 @@
 <p>
 <%= @piece.title %>
 </p>
+<p>
+by <%= @piece.user.username if @piece.user %> - <%= @piece.user.email if @piece.user %>
+</p>

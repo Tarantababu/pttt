@@ -1,8 +1,10 @@
 class PiecesController < ApplicationController
     before_action :set_piece, only: [:edit, :update, :show, :destroy]
+    before_action :require_user, except: [:index, :show]
+    before_action :require_same_user, only: [:edit, :update, :destroy]
     
     def index
-        @pieces = Piece.paginate(page: params[:page], per_page: 2)
+        @pieces = Piece.paginate(page: params[:page], per_page: 5)
     end
     
     def show
@@ -49,5 +51,12 @@ class PiecesController < ApplicationController
     
     def piece_params
         params.require(:piece).permit(:title, :description, :page_number)
+    end
+    
+    def require_same_user
+        if current_user != @piece.user && !current_user.admin?
+            flash[:danger] = "You can only edit your own pieces"
+            redirect_to root_path
+        end
     end
 end

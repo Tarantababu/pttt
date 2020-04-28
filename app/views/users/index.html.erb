@@ -9,8 +9,10 @@
             <div class="container">
                 <%= pluralize(user.pieces.count,"piece") %> 
             </div>
-            <%= link_to "Edit", edit_user_path(user), method: :get, class: "btn btn-outline-info"  %>
-            <%= link_to "Delete", user_path(user), method: :delete, data: {confirm: "Are you serious?"}, class: "btn btn-outline-danger"  %>
+            <% if logged_in? && (current_user.admin?) %>
+                <%= link_to "Edit", edit_user_path(user), method: :get, class: "btn btn-outline-info"  %>
+                <%= link_to "Delete", user_path(user), method: :delete, class: "btn btn-outline-danger"  %>
+            <% end %>
         </div>
     <% end %>
     <div class="flickr_pagination mt-4">

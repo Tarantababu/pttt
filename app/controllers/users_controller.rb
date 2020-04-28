@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
-
+    before_action :set_user, only: [:update, :edit, :show]
     
     def show
-        @user = User.find(params[:id])
-        @pieces = @user.pieces
+        @pieces = @user.pieces.paginate(page: params[:page], per_page: 2)
     end
     
     def index
-        @users = User.all
+       @users = User.paginate(page: params[:page], per_page: 2)
         
     end
     
@@ -18,6 +17,7 @@ class UsersController < ApplicationController
     def create
         @user = User.create(user_params)
         if @user.save
+            session[:user_id] = @user.id
             flash[:notice] = "Welcome to the PTTT, #{@user.username}"
             redirect_to pieces_path
         else
@@ -26,11 +26,9 @@ class UsersController < ApplicationController
     end
     
     def edit
-        @user = User.find(params[:id])
     end
     
     def update
-        @user = User.find(params[:id])
         if @user.update(user_params)
             flash[:notice] = "Your account information was successfully updated."
             redirect_to pieces_path
@@ -39,10 +37,19 @@ class UsersController < ApplicationController
         end
     end
     
+    def destroy
+        @user.destroy
+        flash[:danger] = "User was successfully deleted"
+        redirect_to pieces_path
+    end
+    
     private
     
     def user_params
         params.require(:user).permit(:username, :email, :password)
     end
     
+    def set_user
+        @user = User.find(params[:id])
+    end
 end

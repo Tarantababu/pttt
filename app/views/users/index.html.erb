@@ -9,8 +9,14 @@
             <div class="container">
                 <%= pluralize(user.pieces.count,"piece") %> 
             </div>
-            <%= link_to "Edit", edit_user_path(user), method: :get  %>
-            <%= link_to "Delete", user_path(user), method: :delete, data: {confirm: "Are you serious?"}  %>
+            <%= link_to "Edit", edit_user_path(user), method: :get, class: "btn btn-outline-info"  %>
+            <%= link_to "Delete", user_path(user), method: :delete, data: {confirm: "Are you serious?"}, class: "btn btn-outline-danger"  %>
         </div>
     <% end %>
+    <div class="flickr_pagination mt-4">
+        <div class="page_info">
+          <%= page_entries_info @users %>
+        </div>
+    <%= will_paginate @users, :container => false %>
+    </div>   
 </div>

@@ -1,4 +1,10 @@
 <h1 class="text-center mt-4">Index</h1>
 <div class="container justify-content-center">
     <%= render 'piece' %>
+    <div class="flickr_pagination mt-4">
+        <div class="page_info">
+          <%= page_entries_info @pieces %>
+        </div>
+    <%= will_paginate @pieces, :container => false %>
+    </div>    
 </div>

@@ -2,7 +2,7 @@ class PiecesController < ApplicationController
     before_action :set_piece, only: [:edit, :update, :show, :destroy]
     
     def index
-        @pieces = Piece.all
+        @pieces = Piece.paginate(page: params[:page], per_page: 2)
     end
     
     def show
@@ -14,7 +14,7 @@ class PiecesController < ApplicationController
     
     def create
         @piece = Piece.new(piece_params)
-        @piece.user = User.first
+        @piece.user = current_user
         if @piece.save
             flash[:success] = "Piece was created successfully"
             redirect_to piece_path(@piece)

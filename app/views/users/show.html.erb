@@ -2,3 +2,10 @@
 <%= gravatar_for @user, size: 120 %>
 
 <%= render 'pieces/piece'%>
+
+<div class="flickr_pagination mt-4">
+    <div class="page_info">
+      <%= page_entries_info @pieces %>
+    </div>
+<%= will_paginate @pieces, :container => false %>
+</div>    

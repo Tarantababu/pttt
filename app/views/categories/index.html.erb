@@ -1,0 +1,20 @@
+<h1>Categories</h1>
+
+<div class="container text-center mt-3">
+    <% @categories.each do |category| %>
+        <div class="mt-5">
+            <%= link_to category.name, category_path(category), method: :get, class: "text-center mt-5" %>
+            Joined <%= time_ago_in_words(category.created_at) %> ago
+            <% if logged_in? && (current_user.admin?) %>
+                <%= link_to "Edit", edit_category_path(category), method: :get, class: "btn btn-outline-info"  %>
+                <%= link_to "Delete", category_path(category), method: :delete, class: "btn btn-outline-danger"  %>
+            <% end %>
+        </div>
+    <% end %>
+
+    <div class="flickr_pagination mt-4">
+        <div class="page_info">
+          <%= page_entries_info @categories %>
+        </div>
+    <%= will_paginate @categories, :container => false %>
+    </div> 

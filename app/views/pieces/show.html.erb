@@ -11,3 +11,16 @@
 <p>
 by <%= @piece.user.username if @piece.user %> - <%= @piece.user.email if @piece.user %>
 </p>
+
+<div class="container">
+    <% if @piece.related_pieces.any? %>
+        <div class="card bg-primary text-white mb-3 text-center">
+        <div class="card-body">
+        <% @piece.related_pieces.each do |p| %>
+            <p><strong><%= p.title %></strong></p>
+            <p><%= p.description %></p>
+        <% end %>
+    <% end %>
+</div>
+  </div>
+</div>

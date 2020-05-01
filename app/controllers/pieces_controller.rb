@@ -50,7 +50,7 @@ class PiecesController < ApplicationController
     end
     
     def piece_params
-        params.require(:piece).permit(:title, :description, :page_number, category_ids: [], piece_ids: [])
+        params.require(:piece).permit(:title, :description, :page_number, category_ids: [], related_piece_ids: [])
     end
     
     def require_same_user

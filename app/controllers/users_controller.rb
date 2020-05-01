@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     
     def update
         if @user.update(user_params)
-            flash[:notice] = "Your account information was successfully updated."
+            flash[:notice] = "Your account information has been updated successfully."
             redirect_to pieces_path
         else
             render 'edit'
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     
     def destroy
         @user.destroy
-        flash[:danger] = "User and pieces belongs to this user was successfully deleted"
+        flash[:danger] = "User and pieces/categories belongs to this user has been deleted successfully "
         redirect_to users_path
     end
     
@@ -57,14 +57,14 @@ class UsersController < ApplicationController
     
     def require_same_user
         if current_user != @user and !current_user.admin?
-            flash[:danger] = " :D You can only edit your own account"
+            flash[:danger] = "You can only edit your own account (:"
             redirect_to root_path
         end
     end
     
     def require_admin
         if !logged_in? and !current_user.admin?
-            flash[:danger] = " :D Only Admin Users can perform this action"
+            flash[:danger] = "Only Admin Users can perform this action (:"
             redirect_to root_path
         end
     end

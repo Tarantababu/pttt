@@ -10,17 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_130901) do
+ActiveRecord::Schema.define(version: 2020_05_01_145029) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "piece_categories", force: :cascade do |t|
     t.integer "piece_id"
     t.integer "category_id"
+  end
+
+  create_table "piece_pieces", force: :cascade do |t|
+    t.integer "piece_id"
+    t.integer "related_piece_id"
   end
 
   create_table "pieces", force: :cascade do |t|
@@ -32,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_04_28_130901) do
     t.integer "page_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "piece_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -5,6 +5,8 @@ class CategoriesController < ApplicationController
     end
 
     def show
+        @category = Category.find(params[:id])
+        @category_pieces = @category.pieces.paginate(page: params[:page], per_page: 5)
     end
     
     def new
@@ -13,8 +15,9 @@ class CategoriesController < ApplicationController
     
     def create
         @category = Category.new(category_params)
+        @category.user = current_user
         if @category.save
-            flash[:notice] = "Category created Successfully"
+            flash[:notice] = "Category has been created successfully"
             redirect_to categories_path
         else
             render 'new'

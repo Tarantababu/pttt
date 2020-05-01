@@ -1,0 +1,25 @@
+<h1 class="text-center mt-4"><%= "Category: "+ @category.name %></h1>
+<div class="container justify-content-center">
+    
+    <% @category_pieces.each do |piece| %>
+        <h2><%= link_to piece.title, piece_path(piece), method: :get %></h3>
+        <h4>Description: <%= piece.description %></h5>
+        <h6>User: <%= piece.user.username if piece.user %>
+        <%= link_to gravatar_for(piece.user), user_path(piece.user.id)%></h5>
+        <% if piece.categories.any? %>
+            <p><%= render piece.categories %></p>
+        <% end %>
+        <% if logged_in? && (piece.user == current_user || current_user.admin? ) %>
+            <%= link_to "Edit", edit_piece_path(piece), class: "btn btn-outline-info" %>
+            <%= link_to "Delete", piece_path(piece), method: :delete, data: {confirm: "Are you sure"}, class: "btn btn-outline-danger" %>
+        <% end %>
+    <% end %>
+
+
+    <div class="flickr_pagination mt-4">
+        <div class="page_info">
+          <%= page_entries_info @category_pieces %>
+        </div>
+    <%= will_paginate @category_pieces, :container => false %>
+    </div>    
+</div>

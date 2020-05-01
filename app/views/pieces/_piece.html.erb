@@ -3,6 +3,9 @@
     <h4>Description: <%= piece.description %></h5>
     <h6>User: <%= piece.user.username if piece.user %>
     <%= link_to gravatar_for(piece.user), user_path(piece.user.id)%></h5>
+    <% if piece.categories.any? %>
+        <p><%= render piece.categories %></p>
+    <% end %>
     <% if logged_in? && (piece.user == current_user || current_user.admin? ) %>
         <%= link_to "Edit", edit_piece_path(piece), class: "btn btn-outline-info" %>
         <%= link_to "Delete", piece_path(piece), method: :delete, data: {confirm: "Are you sure"}, class: "btn btn-outline-danger" %>

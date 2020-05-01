@@ -3,5 +3,11 @@
 <%= @piece.title %>
 </p>
 <p>
+<%= @piece.description %>
+</p>
+    <% if @piece.categories.any? %>
+        <p>Themes : <%= render @piece.categories %> </p>
+    <% end %>
+<p>
 by <%= @piece.user.username if @piece.user %> - <%= @piece.user.email if @piece.user %>
 </p>

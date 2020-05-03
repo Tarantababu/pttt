@@ -4,7 +4,9 @@
             <%= render 'shared/errors', obj: @user %>
             <%= form_with(model: @user, class: "form-signin text-center", local: true) do |f| %>
                 <%= image_tag('runner.svg', :alt => "sign in", size: "360x360") %>
-            <h1 class="h3 mb-3 font-weight-normal">Please sign up!</h1>
+                    <% if !logged_in? %>
+                        <h1 class="h3 mb-3 font-weight-normal">Please sign up!</h1>
+                    <% end %>
                     <%= f.label :username, class: "sr-only" %>
                         <%= f.text_field :username, class: "form-control", placeholder: "Enter an username" %>
                     <%= f.label :email, class: "sr-only" %>

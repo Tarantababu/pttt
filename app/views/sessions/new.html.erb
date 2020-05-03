@@ -3,7 +3,7 @@
         <div class= "col-4">
             <%= form_with(scope: :session, url: login_path ,class: "form-signin text-center", local: true) do |f| %>
                 <%= image_tag('sign_in.svg', :alt => "sign in", size: "360x360") %>
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
                     <%= f.label :email, class: "sr-only" %>
                         <%= f.email_field :email, class: "form-control", placeholder: "Enter your email address", required: "", autofocus: "" %>
                     <%= f.label :password, class: "sr-only" %>

@@ -2,7 +2,7 @@
 
 
 .badge {
-  background-color: #CEF6F5;
+  color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
   font-weight: bold;
@@ -16,7 +16,6 @@
   margin-left: 1em;
   
 }
-
 /* pagination styling */
 
 .flickr_pagination {
@@ -83,7 +82,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-sans-serif: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
 *,
@@ -2327,8 +2326,8 @@ fieldset:disabled a.btn {
 
 .btn-secondary {
   color: #212529;
-  background-color: #e94a47;
-  border-color: #e94a47; }
+  background-color: #fb8f53;
+  border-color: #fb8f53; }
   .btn-secondary:hover {
     color: #fff;
     background-color: #fa772e;
@@ -4518,7 +4517,6 @@ input[type="button"].btn-block {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
   background-color: #e9ecef;
-  font-family: 'Montserrat', sans-serif;
   border-radius: 0.3rem; }
   @media (min-width: 576px) {
     .jumbotron {
@@ -8650,7 +8648,7 @@ a.text-dark:hover, a.text-dark:focus {
   @page {
     size: a3; }
   body {
-    min-width: 992px !important;}
+    min-width: 992px !important; }
   .container {
     min-width: 992px !important; }
   .navbar {
@@ -8732,11 +8730,11 @@ a.text-dark:hover, a.text-dark:focus {
   padding-top: 112px; }
 
 .bg-growth {
-  background-image: asset-url('clip-education.png');
-  background-position: right;
+  background: url("../images/bg-growth.svg");
+  background-position: bottom;
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
-          background-size: 80%; }
+          background-size: 100%; }
   @media all and (-ms-high-contrast: none) {
     .bg-growth {
       background-image: none; } }
@@ -8747,3 +8745,11 @@ a.text-dark:hover, a.text-dark:focus {
 @media (max-width: 767.98px) {
   .display-1 {
     font-size: 4rem; } }
+
+.bg-custom-1 {
+  background-color: #85144b;
+}
+
+.bg-custom-2 {
+background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+}

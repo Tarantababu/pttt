@@ -1,13 +1,40 @@
-<% @pieces.each do |piece| %>
-    <h2><%= link_to piece.title, piece_path(piece), method: :get %></h3>
-    <h4>Description: <%= piece.description %></h5>
-    <h6>User: <%= piece.user.username if piece.user %>
-    <%= link_to gravatar_for(piece.user), user_path(piece.user.id)%></h5>
-    <% if piece.categories.any? %>
-        <p><%= render piece.categories %></p>
-    <% end %>
-    <% if logged_in? && (piece.user == current_user || current_user.admin? ) %>
-        <%= link_to "Edit", edit_piece_path(piece), class: "btn btn-outline-info" %>
-        <%= link_to "Delete", piece_path(piece), method: :delete, data: {confirm: "Are you sure"}, class: "btn btn-outline-danger" %>
-    <% end %>
-<% end %>
+<div class="container text-center mt-4">
+    <%= link_to image_tag('new_entry.svg', :alt => "add pieces", size: "240x240"), new_piece_path %>
+    <span class="badge badge-light">Total: <%= current_user.pieces.count %></span>
+</div>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <% current_user.pieces.order("created_at desc").each do |piece| %>
+            <div class="col-lg-4 d-flex align-items-stretch">
+              <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <%= piece.title %>
+                </div>
+                    <div class="card-body">
+                          <p class="card-text"><%= truncate(piece.description, length: 250) %></p>
+                            <div class="mt-3 mb-3">
+                                <% if piece.categories.any? %>
+                                    <div class="row">
+                                        <div class="col d-flex align-items-stretch">
+                                            <p><%= render piece.categories %></p>
+                                        </div>
+                                    </div>
+                                <% else %>
+                                    <div class="mx-auto"><%= link_to "Link A Category", edit_piece_path(piece), class: "badge badge-dark" %></div>
+                                <% end %>
+                            </div>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <%= link_to "View", piece_path(piece), method: :get, class: "btn btn-outline-dark" %>
+                            </div>
+                            <small class="text-muted"><%= time_ago_in_words(piece.updated_at) %></small>  
+                          </div>
+                    </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+</div>

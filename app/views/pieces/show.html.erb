@@ -1,26 +1,39 @@
-<h1>Show Piece</h1>
-<p>
-<%= @piece.title %>
-</p>
-<p>
-<%= @piece.description %>
-</p>
-    <% if @piece.categories.any? %>
-        <p>Themes : <%= render @piece.categories %> </p>
-    <% end %>
-<p>
-by <%= @piece.user.username if @piece.user %> - <%= @piece.user.email if @piece.user %>
-</p>
-
-<div class="container">
+<div class="container mt-5 text-center">
+  <h3><%= @piece.title %><span class="badge badge-info ml-2">New</span></h1>
+  <%= image_tag('content_structure.svg', :alt => "add pieces", size: "240x240", class: "text-center mb-4") %>
+  <div class="card border-primary mb-3 text-center">
+    <blockquote class="blockquote blockquote-reverse">
+      <p class="mb-0 mt-3"><%= @piece.description %></p>
+      <footer class="blockquote-footer mt-3"><strong><%= @piece.title %></strong> in page
+        <cite title="Source Title"><strong><%= @piece.page_number %></strong></cite>
+      </footer>
+          <% if @piece.categories.any? %>
+            <p class="text-center mt-3"><%= render @piece.categories %> </p>
+          <% end %>
+          <% if logged_in? && (@piece.user == current_user || current_user.admin? ) %>
+              <%= link_to "Edit", edit_piece_path(@piece), class: "btn btn-outline-info" %>
+              <%= link_to "Delete", piece_path(@piece), method: :delete, data: {confirm: "Are you sure?"},  class: "btn btn-outline-danger" %>
+          <% end %>          
+    </blockquote>
+  </div>
+</div>  
+<h4 class="text-center mt-4">Related Pieces</h4>
+<div class="row">
+  <div class="col-4 mx-auto">
     <% if @piece.related_pieces.any? %>
-        <div class="card bg-primary text-white mb-3 text-center">
-        <div class="card-body">
         <% @piece.related_pieces.each do |p| %>
-            <p><strong><%= p.title %></strong></p>
-            <p><%= p.description %></p>
+            <div class="card border-secondary mb-3 text-center">
+              <div class="card-body">
+                <blockquote class="card-blockquote">
+                  <p><%= p.description %></p>
+                  <footer>
+                    <cite title="Source Title"><strong><%= p.title %></strong></cite> in page
+                    <cite title="Source Title"><strong><%= p.page_number %></strong></cite>
+                  </footer>
+                </blockquote>
+              </div>
+            </div>
         <% end %>
     <% end %>
-</div>
   </div>
 </div>

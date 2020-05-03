@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+    before_action :require_user, except: [:index, :show]
+    before_action :require_same_user, only: [:edit, :update, :destroy, :show]
 
     def index
         @categories = Category.paginate(page: params[:page], per_page: 5)
@@ -31,11 +33,25 @@ class CategoriesController < ApplicationController
         @category = Category.find(params[:id])
     end
     
+    def destroy
+        @category = Category.find(params[:id])
+        @category.destroy
+        flash[:notice] = "Category has been deleted successfully."
+        redirect_to categories_path
+    end
+    
     private
     
     def category_params
         params.require(:category).permit(:name)
     end
     
+    def require_same_user
+        @category = Category.find(params[:id])
+        if current_user != @category.user && !current_user.admin?
+            flash[:danger] = "You can only control your own categories."
+            redirect_to root_path
+        end
+    end
     
 end

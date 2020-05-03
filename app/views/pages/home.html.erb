@@ -1,16 +1,13 @@
 <div class="jumbotron jumbotron-fullheight bg-growth bg-dark text-white mb-0 radius-0">
   <div class="container">
-    <div class="row">
-      <div class="col-xl-6">
+    <div class="d-flex flex-row">
+      <div class="p-2">
 
         <h1 class="display-1 text-light display-fix">Put The Things Together</h1>
         <span class="lead">An App for Learning to Learn</span>
 
         <div class="mt-4">
-          <a href="#!"
-             class="btn btn-secondary btn-lg my-2 mr-2">
-            <span>Signup!</span>
-          </a>
+          <%= link_to "Signup!", signup_path, class: "btn btn-secondary btn-lg my-2 mr-2" %>
 
           <a href="#!"
              class="btn btn-outline-light btn-hover-text-dark btn-lg my-2">
@@ -19,19 +16,63 @@
         </div>
 
       </div>
+      <div class="p-0">
+        <%= image_tag("reading_book.svg", size: "550x550") %>
+      </div>
     </div>
   </div>
 </div>
-
-<div class="jumbotron mt-5">
-  <h1 class="display-5">Put The Things Together!</h1>
-  <img>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <p class="lead">
-    <% if !logged_in? %>
-      <%= link_to "Sign Up!", signup_path, class: "btn btn-primary btn-lg" %>
-    <% end %>
-  </p>
-</div>
+<div class="container">
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Pricing</h1>
+    <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
+  </div>
+  
+  <div class="card-deck mb-3 text-center">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">Free</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>10 users included</li>
+            <li>2 GB of storage</li>
+            <li>Email support</li>
+            <li>Help center access</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+        </div>
+      </div>
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">Pro</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>20 users included</li>
+            <li>10 GB of storage</li>
+            <li>Priority email support</li>
+            <li>Help center access</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+        </div>
+      </div>
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">Enterprise</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>30 users included</li>
+            <li>15 GB of storage</li>
+            <li>Phone and email support</li>
+            <li>Help center access</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -4,11 +4,11 @@ class UsersController < ApplicationController
     before_action :require_admin, only: [:destroy]
     
     def show
-        @pieces = @user.pieces.paginate(page: params[:page], per_page: 5)
+        @pieces = @user.pieces.paginate(page: params[:page], per_page: 9)
     end
     
     def index
-       @users = User.paginate(page: params[:page], per_page: 5)
+       @users = User.paginate(page: params[:page], per_page: 9)
         
     end
     

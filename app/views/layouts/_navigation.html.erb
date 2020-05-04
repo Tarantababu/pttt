@@ -1,7 +1,11 @@
 <%if !logged_in?%>
   <a href="<%= signup_path %>" class="d-block px-3 py-2 text-center text-bold text-white old-bv bg-secondary">It's a revolutionary app for Bookworms! <sup>Beta</sup></a>
 <%end%>
+<% if logged_in? %>
+<header class="navbar navbar-expand navbar-dark bg-dark flex-column flex-md-row bd-navbar fixed-top ">
+<% else %>
 <header class="navbar navbar-expand navbar-dark bg-dark flex-column flex-md-row bd-navbar">
+<% end %>
   <div class="navbar-nav-scroll">
     <ul class="navbar-nav bd-navbar-nav flex-row">
       <li class="nav-brand">

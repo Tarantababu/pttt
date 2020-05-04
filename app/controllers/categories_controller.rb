@@ -3,12 +3,12 @@ class CategoriesController < ApplicationController
     before_action :require_same_user, only: [:edit, :update, :destroy, :show]
 
     def index
-        @categories = current_user.categories.paginate(page: params[:page], per_page: 5)
+        @categories = current_user.categories.paginate(page: params[:page], per_page: 10)
     end
 
     def show
         @category = Category.find(params[:id])
-        @category_pieces = @category.pieces.paginate(page: params[:page], per_page: 5)
+        @category_pieces = @category.pieces.paginate(page: params[:page], per_page: 10)
     end
     
     def new

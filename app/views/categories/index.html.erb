@@ -1,4 +1,12 @@
-<%= render 'form'%>
+<div class="container py-5 mb5 mt-2 text-center">
+    <div class = "row">
+        <div class="col-12 mt-5 shadow justify-content-center">
+            <span class="badge badge-primary">Add New Category</span>
+            <%= link_to image_tag('files.svg', :alt => "add pieces", size: "240x240"), new_category_path %>
+            <span class="badge badge-light">Total: <%= current_user.categories.count %></span>
+        </div>
+    </div>
+</div>
 <div class="row justify-content-center">
     <div class="col-md-6">
           <table class="table table-hover table-striped">
